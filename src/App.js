@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import styled from "styled-components";
+import Button from '@material-ui/core/Button';
+// import SearchBar from 'material-ui-search-bar'
+import 'typeface-roboto';
+
 
 const Btn = styled.button`
     background: #ffffff;
@@ -27,8 +31,8 @@ const Btn = styled.button`
 `;
 
 const Input = styled.input`
-  padding: 0.5em;
-  margin: 0.5em;
+  // padding: 0.5em;
+  margin: 1%;
   display: inline-block;
   color: ${props => props.inputColor || "palevioletred"};
   border: none;
@@ -38,6 +42,11 @@ const Input = styled.input`
   height: 20px;
   width: 30%;
 `;
+
+const API_Key = 'AIzaSyB3iM1KV1Jk_2-iPNXiflbIehCRaxmaBBY';
+
+const URL = `https://www.googleapis.com/youtube/v3/search?key=${API_Key}&maxResults=10&part=snippet&q=despacito`;
+
 
 
 const BuySellBox = styled.div`
@@ -49,6 +58,19 @@ const BuySellBox = styled.div`
 `;
 
 class App extends Component {
+
+  getResults(){
+    fetch(URL)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        const results = responseJson.items;
+        console.log(results);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
   render() {
     return (
       <div className="App">
@@ -57,10 +79,22 @@ class App extends Component {
           
           <div style={{...({ display: 'inline-block', width: '60%' })}}>
           <Input type="text"/>
-          <Btn>
+          <Btn onClick={() => this.getResults()}>
             Search
           </Btn>
+          {/* <Button variant="contained" color="primary">
+            Search
+          </Button> */}
           </div>
+          {/* <SearchBar
+      onChange={() => console.log('onChange')}
+      onRequestSearch={() => console.log('onRequestSearch')}
+      style={{
+        margin: '0 auto',
+        maxWidth: 800
+      }}
+    /> */}
+          
           
         </header>
       </div>
