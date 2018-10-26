@@ -17,7 +17,7 @@ const Btn = styled.button`
     padding: 12px 1px;
     font-size: 1rem;
     font-weight: bold;
-    width: 20%;
+    width: 15%;
     border-radius: 30px;
     outline: none;
     max-width: calc(800px / 3);
@@ -45,7 +45,6 @@ const Input = styled.input`
 
 const API_Key = 'AIzaSyB3iM1KV1Jk_2-iPNXiflbIehCRaxmaBBY';
 
-const URL = `https://www.googleapis.com/youtube/v3/search?key=${API_Key}&maxResults=10&part=snippet&q=despacito`;
 
 
 
@@ -57,13 +56,30 @@ const BuySellBox = styled.div`
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 `;
 
+var results = {}; 
+
 class App extends Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      value: '',
+      results: {},
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
   getResults(){
+    const URL = `https://www.googleapis.com/youtube/v3/search?key=${API_Key}&maxResults=10&part=snippet&q=${this.state.value}`;
+    console.log(this.state.value);
     fetch(URL)
       .then((response) => response.json())
       .then((responseJson) => {
-        const results = responseJson.items;
+        results = responseJson.items;
         console.log(results);
       })
       .catch((error) => {
@@ -77,8 +93,8 @@ class App extends Component {
         <header className="App-header">
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           
-          <div style={{...({ display: 'inline-block', width: '60%' })}}>
-          <Input type="text"/>
+          <div style={{...({ display: 'inline-block', width: '60%', marginTop: '50px' })}}>
+          <Input type="text" value={this.state.value} onChange={this.handleChange}/>
           <Btn onClick={() => this.getResults()}>
             Search
           </Btn>
