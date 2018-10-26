@@ -107,6 +107,7 @@ class App extends Component {
       .then((responseJson) => {
         results = responseJson.items;
         console.log(results);
+        displayResults = [];
         for(var i = 0; i<10; i++){
           displayResults.push({
             title: results[i].snippet.title,
