@@ -157,11 +157,12 @@ class App extends Component {
         maxWidth: 800
       }}
     /> */}
-      <div style = {{...({ width: '80%', margin: 'auto', marginTop: '30px' })}}>
+      <div style = {{...({ width: '80%', margin: 'auto', marginTop: '30px', borderRadius: '10px',overflow: 'hidden', boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.5)' })}}>
           <ReactTable
             data={this.state.res}
             columns={columns}
             defaultPageSize={10}
+            style={{...({ marginBottom: '50px' })}}
           />
         </div>
           
