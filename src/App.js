@@ -65,6 +65,15 @@ const API_Key = 'AIzaSyB3iM1KV1Jk_2-iPNXiflbIehCRaxmaBBY';
 var results = {}; 
 var displayResults = [];
 const columns = [{
+  Header: 'Thumbnail',
+  accessor: 'thumbnail',
+  sortable: false,
+  filterable: false,
+  Cell: row => (
+    <img src={row.value}/>
+  )
+
+}, {
   Header: 'Title',
   accessor: 'title'
 }, {
@@ -151,6 +160,7 @@ class App extends Component {
           <ReactTable
             data={this.state.res}
             columns={columns}
+            stye = {{...({ width: '60%', margin: '50px' })}}
           />
           
         </header>
