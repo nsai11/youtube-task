@@ -12,4 +12,7 @@ $ npm start
 Live demo can be found [here](http://ritwij.me:3000).
 
 ### Functions used in the code
-* something
+* handleKeyPress - Triggers the function for Search when Enter/Return key is pressed.
+* handleChange - Changes the State of the Search Query.
+* displayTable - Changes the State of the Table, which is hidden initially.
+* getResults - Fetches data using YouTube API, stores the response in the State, and triggers displayTable function
