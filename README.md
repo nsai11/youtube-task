@@ -16,3 +16,7 @@ Live demo can be found [here](http://ritwij.me:3000).
 * handleChange - Changes the State of the Search Query.
 * displayTable - Changes the State of the Table, which is hidden initially.
 * getResults - Fetches data using YouTube API, stores the response in the State, and triggers displayTable function
+
+### Libraries used
+* styled-components: for styling
+* React Table: for displaying the data and sorting
