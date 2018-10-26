@@ -111,7 +111,7 @@ class App extends Component {
   }
 
   getResults(){
-    const URL = `https://www.googleapis.com/youtube/v3/search?key=${API_Key}&maxResults=10&part=snippet&q=${this.state.value}`;
+    const URL = `https://www.googleapis.com/youtube/v3/search?key=${API_Key}&maxResults=20&part=snippet&q=${this.state.value}`;
     console.log(this.state.value);
     fetch(URL)
       .then((response) => response.json())
@@ -119,7 +119,7 @@ class App extends Component {
         results = responseJson.items;
         console.log(results);
         displayResults = [];
-        for(var i = 0; i<10; i++){
+        for(var i = 0; i<20; i++){
           displayResults.push({
             title: results[i].snippet.title,
             thumbnail: results[i].snippet.thumbnails.default.url,
@@ -168,6 +168,7 @@ class App extends Component {
             columns={columns}
             defaultPageSize={10}
             style={{...({ marginBottom: '50px' })}}
+            pageSizeOptions= {[5, 10, 20]}
           />
         </div>
           
