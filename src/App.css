@@ -22,6 +22,17 @@
   /* color: #61dafb; */
 }
 
+.fadeOut{
+  opacity:0;
+  transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.3s;
+
+}
+.fadeIn{
+  opacity:1;
+  transition: width 0.5s, height 0.5s, opacity 0.5s 0.3s;
+
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

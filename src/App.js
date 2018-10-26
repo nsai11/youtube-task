@@ -90,7 +90,7 @@ class App extends Component {
     this.state = {
       value: '',
       res: [],
-      disp: 'none'
+      disp: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -106,7 +106,8 @@ class App extends Component {
   }
 
   displayTable(){
-    this.setState({disp: 'block'});
+    this.setState({disp: true});
+    console.log('hello');
   }
 
   getResults(){
@@ -158,7 +159,10 @@ class App extends Component {
         maxWidth: 800
       }}
     /> */}
-      <div style = {{...({ display: `${this.state.disp}`,transition: '1s',width: '80%', margin: 'auto', marginTop: '30px', borderRadius: '10px',overflow: 'hidden', boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.5)' })}}>
+      <div
+      style = {{...({ display: `${this.state.disp}`,transition: '1s',width: '80%', margin: 'auto', marginTop: '30px', borderRadius: '10px',overflow: 'hidden', boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.5)' })}}
+      className = {this.state.disp?'fadeIn':'fadeOut'}
+      >
           <ReactTable
             data={this.state.res}
             columns={columns}
