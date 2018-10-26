@@ -57,6 +57,7 @@ const BuySellBox = styled.div`
 `;
 
 var results = {}; 
+var displayResults = [];
 
 class App extends Component {
 
@@ -64,13 +65,24 @@ class App extends Component {
     super(props);
     this.state = {
       value: '',
-      results: {},
+      asc: true,
+      sortby: 0
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
   
+  handleKeyPress(event){
+    if(event.which === 13)
+      this.getResults();
+  }
+
   handleChange(event) {
     this.setState({value: event.target.value});
+  }
+
+  displayTable(){
+    console.log('hello');
   }
 
   getResults(){
@@ -81,6 +93,16 @@ class App extends Component {
       .then((responseJson) => {
         results = responseJson.items;
         console.log(results);
+        for(var i = 0; i<10; i++){
+          displayResults.push({
+            title: results[i].snippet.title,
+            thumbnail: results[i].snippet.thumbnails.medium.url,
+            channelTitle: results[i].snippet.channelTitle,
+            publishedAt: results[i].snippet.publishedAt
+          });
+        }
+        this.displayTable();
+        console.log(displayResults);
       })
       .catch((error) => {
         console.log(error);
@@ -94,7 +116,7 @@ class App extends Component {
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           
           <div style={{...({ display: 'inline-block', width: '60%', marginTop: '50px' })}}>
-          <Input type="text" value={this.state.value} onChange={this.handleChange}/>
+          <Input type="text" value={this.state.value} onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
           <Btn onClick={() => this.getResults()}>
             Search
           </Btn>
