@@ -4,6 +4,7 @@ import styled from "styled-components";
 import 'typeface-roboto';
 import ReactTable from "react-table";
 import 'react-table/react-table.css';
+import { number } from 'prop-types';
 
 
 const Btn = styled.button`
@@ -113,7 +114,7 @@ class App extends Component {
         results = responseJson.items;
         console.log(results);
         displayResults = [];
-        for(var i = 0; i<20; i++){
+        for(var i = 0; i<numberOfResults; i++){
           displayResults.push({
             title: results[i].snippet.title,
             thumbnail: results[i].snippet.thumbnails.default.url,
