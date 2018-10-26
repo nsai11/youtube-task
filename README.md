@@ -10,6 +10,7 @@ $ npm start
 ```
 
 Live demo can be found [here](http://ritwij.me:3000).
+Sorting the columns can be done by clicking on the Headers, except the thumbnail for obvious reasons.
 
 ### Functions used in the code
 * handleKeyPress - Triggers the function for Search when Enter/Return key is pressed.
