@@ -52,17 +52,23 @@ const API_Key = 'AIzaSyB3iM1KV1Jk_2-iPNXiflbIehCRaxmaBBY';
 var results = {}; 
 var displayResults = [];
 const columns = [{
+  show: false,
+  accessor: 'link'
+}, {
   Header: 'Thumbnail',
   accessor: 'thumbnail',
   sortable: false,
   filterable: false,
-  Cell: row => (
-    <img src={row.value}/>
+  Cell: ({ row, original }) => (
+    <a href={original.link} target="_blank"><img src={original.thumbnail}/></a>
   )
 
 }, {
   Header: 'Title',
-  accessor: 'title'
+  accessor: 'title',
+  Cell: ({ row, original }) => (
+    <a href={original.link} target="_blank">{original.title}</a>
+  )
 }, {
   Header: 'Channel',
   accessor: 'channelTitle'
@@ -100,7 +106,7 @@ class App extends Component {
   getResults(){
     const numberOfResults = 20; //change this to add more results to the page
     const URL = `https://www.googleapis.com/youtube/v3/search?key=${API_Key}&maxResults=${numberOfResults}&part=snippet&q=${this.state.value}`;
-    console.log(this.state.value);
+    // console.log(this.state.value);
     fetch(URL)
       .then((response) => response.json())
       .then((responseJson) => {
@@ -112,7 +118,8 @@ class App extends Component {
             title: results[i].snippet.title,
             thumbnail: results[i].snippet.thumbnails.default.url,
             channelTitle: results[i].snippet.channelTitle,
-            publishedAt: results[i].snippet.publishedAt
+            publishedAt: results[i].snippet.publishedAt,
+            link: `https://www.youtube.com/watch?v=`+ results[i].id.videoId
           });
         }
         this.displayTable();
