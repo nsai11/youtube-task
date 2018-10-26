@@ -18,5 +18,6 @@ Live demo can be found [here](http://ritwij.me:3000).
 * getResults - Fetches data using YouTube API, stores the response in the State, and triggers displayTable function
 
 ### Libraries used
+* React
 * styled-components: for styling
 * React Table: for displaying the data and sorting
