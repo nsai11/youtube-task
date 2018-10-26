@@ -120,7 +120,7 @@ class App extends Component {
         for(var i = 0; i<10; i++){
           displayResults.push({
             title: results[i].snippet.title,
-            thumbnail: results[i].snippet.thumbnails.medium.url,
+            thumbnail: results[i].snippet.thumbnails.default.url,
             channelTitle: results[i].snippet.channelTitle,
             publishedAt: results[i].snippet.publishedAt
           });
@@ -157,11 +157,13 @@ class App extends Component {
         maxWidth: 800
       }}
     /> */}
+      <div style = {{...({ width: '80%', margin: 'auto', marginTop: '30px' })}}>
           <ReactTable
             data={this.state.res}
             columns={columns}
-            stye = {{...({ width: '60%', margin: '50px' })}}
+            defaultPageSize={10}
           />
+        </div>
           
         </header>
       </div>
